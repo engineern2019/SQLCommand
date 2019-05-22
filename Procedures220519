@@ -1,0 +1,150 @@
+SQL> create or replace procedure firstprocedure is begin dbms_output.put_line('hello');
+  2   end;
+  3* /
+Procedure FIRSTPROCEDURE compiled
+
+SQL> call firstprocedure();
+
+Call completed.
+
+SQL> show errors
+No errors.
+SQL> set serverouput on;
+
+
+
+SQL> create or replace procedure firstprocedure 
+  2  is 
+  3  begin 
+  4  dbms_output.put_line('hello');
+  5   end;
+  6* /
+Procedure FIRSTPROCEDURE compiled
+
+SQL> call firstprocedure();
+hello
+
+
+
+
+
+SQL> create or replace procedure firstprocedure 
+  2  is 
+  3  begin 
+  4  dbms_output.put_line('hello');
+  5  dbms_output.put_line('Lucadose');
+  6   end;
+  7* /
+Procedure FIRSTPROCEDURE compiled
+
+SQL> call firstprocedure;
+
+Error starting at line : 1 in command -
+call firstprocedure
+Error report -
+ORA-06576: not a valid function or procedure name
+
+
+
+
+
+
+
+
+
+
+
+
+SQL> call firstprocedure();
+hello
+Lucadose
+
+
+Call completed.
+
+SQL> create or replace procedure addition
+  2  is
+  3  A number(3);
+  4  B number(3);
+  5  C number(3);
+  6  begin
+  7  A:=15;
+  8  B:=20;
+  9  C:=A+B;
+ 10  dbms_output.put_line('the result')
+ 11  dbms_output.put_line(c);
+ 12  end;
+ 13  /
+
+Procedure ADDITION compiled
+
+Errors: check compiler log
+
+
+
+
+
+
+
+
+
+
+
+
+SQL> create or replace procedure addition
+  2  is
+  3  A number(3);
+  4  B number(3);
+  5  C number(3);
+  6  begin
+  7  A:=15;
+  8  B:=20;
+  9  C:=A+B;
+ 10  dbms_output.put_line('the result');
+ 11  dbms_output.put_line(c);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SQL> create or replace procedure addition2 (A number, B number, C number) 
+  2  is
+  3  Result number(3);
+  4  begin
+  5  result:=A+B+C;
+  6  dbms_output.put_line('Result is'|| Result );
+  7  end;
+  8* /
+Procedure ADDITION2 compiled
+
+SQL> call addition2(6,9,8);
+Result is23
+
+
+Call completed.
+
+SQL> call addition2(3,9,10);
+Result is22
+
+
+Call completed.
+
+SQL> call addition2(10,10,10);
+Result is30
+
+
+Call completed.
+
+SQL> 
