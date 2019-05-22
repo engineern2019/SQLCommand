@@ -682,6 +682,21 @@ ORA-06576: not a valid function or procedure name
 SQL> call createbankaccount('Arun','london','savings');
 Call completed.
 
+SQL> create or replace procedure employee_info(empno, number)
+  2  is
+  3  Fname char(20);
+  4  Lname char(20);
+  5  Sal number(5);
+  6  begin
+  7  select first_name, last_name, salary into Fname, Lname, Sal from employees
+  8  where employee_id=empno;
+  9  dbms_output.put_line(Fname);
+ 10  dbms_output.put_line(Lname);
+ 11  dbms_output.put_line(Sal);
+ 12  end;
+ 13* /
+
+
 
 SQL> call createbankaccount('Julia','london','savings');
 Call completed.
