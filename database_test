@@ -1,0 +1,188 @@
+SQLcl: Release 4.2.0.16.153.2014 RC on Tue May 21 05:36:03 2019
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+Username? (''?) hr
+Password? (**********?) ******
+Last Successful login time: Tue May 21 2019 05:36:47 -04:00
+
+Connected to:
+Oracle Database 12c Enterprise Edition Release 12.1.0.2.0 - 64bit Production
+With the Partitioning, OLAP, Advanced Analytics and Real Application Testing options
+
+
+SQL> select*from school;
+
+     REGNO NAME                                MARKS EMAIL_ADDRESS
+---------- ------------------------------ ---------- --------------------
+POSTCODE  
+----------
+        18 Fred                                   45 fred@gmail.com       
+NULL      
+
+        19 Garry                                  60 garry@gmail.com      
+NULL      
+
+
+
+SQL> grant connect to garry;
+Error starting at line : 1 in command -
+grant connect to garry
+Error report -
+ORA-01924: role 'CONNECT' not granted or does not exist
+01924. 00000 -  "role '%s' not granted or does not exist"
+*Cause:    Either the role was not granted to the user, or the role did not exist.
+*Action:   Create the role or grant the role to the user and retry
+           the operation.
+SQL> connect system;
+Password? (**********?) ******
+
+
+SQL> grant connect to garry;
+
+Error starting at line : 1 in command -
+grant connect to garry
+Error report -
+ORA-01917: user or role 'GARRY' does not exist
+01917. 00000 -  "user or role '%s' does not exist"
+*Cause:    There is not a user or role by that name.
+
+
+SQL> grant connect to Garry;
+Error starting at line : 1 in command -
+grant connect to Garry
+Error report -
+ORA-01917: user or role 'GARRY' does not exist
+01917. 00000 -  "user or role '%s' does not exist"
+*Cause:    There is not a user or role by that name.
+
+
+SQL> grant connect to Dawood;
+Grant succeeded.
+
+SQL> connect to dawood;
+
+
+
+SQL> connect dawood;
+Password? (**********?) ****
+Connected.
+SQL> grant create table, create view, create index to dawood;
+
+Error starting at line : 1 in command -
+grant create table, create view, create index to dawood
+Error report -
+ORA-00990: missing or invalid privilege
+00990. 00000 -  "missing or invalid privilege"
+*Cause:    
+
+
+SQL> select* from school;
+Error starting at line : 1 in command -
+select* from school
+Error at Command Line : 1 Column : 14
+Error report -
+SQL Error: ORA-00942: table or view does not exist
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+*Action:
+SQL> select * from school2;
+
+Error starting at line : 1 in command -
+select * from school2
+Error at Command Line : 1 Column : 15
+Error report -
+SQL Error: ORA-00942: table or view does not exist
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+
+
+SQL> select* from school2;
+Error starting at line : 1 in command -
+select* from school2
+Error at Command Line : 1 Column : 14
+Error report -
+SQL Error: ORA-00942: table or view does not exist
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+*Action:
+SQL> connect dawood
+Password? (**********?) ****
+
+
+SQL> select* from school2;
+Error starting at line : 1 in command -
+select* from school2
+Error at Command Line : 1 Column : 14
+Error report -
+SQL Error: ORA-00942: table or view does not exist
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+
+
+SQL> select * from school2;
+Error starting at line : 1 in command -
+select * from school2
+Error at Command Line : 1 Column : 15
+Error report -
+SQL Error: ORA-00942: table or view does not exist
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+
+
+SQL> select * from school;
+Error starting at line : 1 in command -
+select * from school
+Error at Command Line : 1 Column : 15
+Error report -
+SQL Error: ORA-00942: table or view does not exist
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+
+
+SQL> select * from school;
+
+Error starting at line : 1 in command -
+select * from school
+Error at Command Line : 1 Column : 15
+Error report -
+SQL Error: ORA-00942: table or view does not exist
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+*Action:
+SQL> select* from hr_table;
+
+Error starting at line : 1 in command -
+select* from hr_table
+Error at Command Line : 1 Column : 14
+Error report -
+SQL Error: ORA-00942: table or view does not exist
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+
+
+SQL> select table_name from user_table;
+Error starting at line : 1 in command -
+select table_name from user_table
+Error at Command Line : 1 Column : 24
+Error report -
+SQL Error: ORA-00942: table or view does not exist
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+*Action:
+SQL> select* from bank;
+
+Error starting at line : 1 in command -
+select* from bank
+Error at Command Line : 1 Column : 14
+Error report -
+SQL Error: ORA-00942: table or view does not exist
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+*Action:
+SQL> select table_name from user_tables;
+no rows selected
+SQL> select* from user_tables;
+no rows selected
+SQL> 
+

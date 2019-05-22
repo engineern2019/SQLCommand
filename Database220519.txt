@@ -1,0 +1,692 @@
+ERROR:
+ORA-04043: object product does not exist
+SQL> describe sales;
+Name  Null? Type        
+----- ----- ----------- 
+PID         NUMBER(3)   
+QTY         NUMBER(3)   
+PRICE       NUMBER(5,2) 
+DATE1       DATE        
+SQL> describe products;
+Name Null? Type      
+---- ----- --------- 
+SID        NUMBER(3) 
+PID        NUMBER(3) 
+NAME       CHAR(10)  
+SQL> sysdate'
+
+Error starting at line : 1 in command -
+sysdate'
+Error report -
+Unknown Command
+
+SQL> sysdate;
+
+Error starting at line : 1 in command -
+sysdate
+Error report -
+Unknown Command
+
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> select * from products;
+
+
+SQL> select (*) from products;
+Error starting at line : 1 in command -
+select (*) from products
+Error at Command Line : 1 Column : 9
+Error report -
+SQL Error: ORA-00936: missing expression
+00936. 00000 -  "missing expression"
+*Cause:    
+
+
+SQL> select * from school2;
+     REGNO NAME                      MARKS
+---------- -------------------- ----------
+        46 paul                         70
+        50 regev                         1
+        51 Newt                         99
+         1 halts                        85
+         2 Tino                        100
+
+SQL> select*from products;
+
+
+
+
+SQL> select*from asda;
+PRODUCT              PRICE_PURCHASED PRICE_SOLD QTY_PURCHASED   QTY_SOLD
+-------------------- --------------- ---------- ------------- ----------
+7up                               .5         .9           100         80
+cola                              .6          1           100         70
+cake                               1          2           110        100
+
+SQL> insert into products values(10,101,'7up');
+
+1 row inserted.
+
+
+SQL> insert into products values(10,102,'Coke');
+1 row inserted.
+
+
+SQL> insert into sales values(101,2,1,sysdate);
+1 row inserted.
+
+
+SQL> insert into sales values(102,1,1,sysdate);
+1 row inserted.
+
+SQL> select*from sales;
+
+       PID        QTY      PRICE DATE1    
+---------- ---------- ---------- ---------
+       101          2          1 21-MAY-19
+       102          1          1 21-MAY-19
+
+SQL> select*from products;
+
+       SID        PID NAME      
+---------- ---------- ----------
+        10        101 7up       
+        10        102 Coke      
+
+
+SQL> select count(*) from products where sid in (select sid from subcategory where cid=(select cid from category where description='food'));
+  COUNT(*)
+----------
+         0
+
+
+SQL> select count(*) from products where sid in (select sid from subcategory where cid=(select cid from category where description='food'));
+
+  COUNT(*)
+----------
+         0
+
+
+SQL> select count(*) from products where pid in (select pid from sales where pid=(select pid from category where name='7up'));
+  COUNT(*)
+----------
+         0
+
+
+SQL> select count(*) from sales where pid in (select pid from sales where pid=(select pid from category where name='7up'));
+Error starting at line : 1 in command -
+select count(*) from sales where pid in (select pid from sales where pid=(select pid from category where name='7up'))
+Error at Command Line : 1 Column : 106
+Error report -
+SQL Error: ORA-00904: "NAME": invalid identifier
+00904. 00000 -  "%s: invalid identifier"
+*Cause:    
+
+
+SQL> select count(*) from sales where pid in (select pid from sales where pid=(select pid from products where name='7up'));
+  COUNT(*)
+----------
+         1
+
+
+SQL> select count(*) from sales where pid in (select pid from sales where pid=(select pid from products where name='7up'));
+  COUNT(*)
+----------
+         1
+
+SQL> select name from products where pid = (select pid from sales group by pid having count(*) = (select max(coundt(*)) from sales group by pid));
+
+Error starting at line : 1 in command -
+select name from products where pid = (select pid from sales group by pid having count(*) = (select max(coundt(*)) from sales group by pid))
+Error at Command Line : 1 Column : 112
+Error report -
+SQL Error: ORA-00936: missing expression
+00936. 00000 -  "missing expression"
+*Cause:    
+
+
+SQL> select name from products where pid = (select pid from sales group by pid having count(*) = (select max(count(*)) from sales group by pid));
+Error starting at line : 1 in command -
+select name from products where pid = (select pid from sales group by pid having count(*) = (select max(count(*)) from sales group by pid))
+Error report -
+ORA-01427: single-row subquery returns more than one row
+
+
+SQL> select name from products where pid = (select pid from sales group by pid having count(*) = (select max(count(*)) from sales group by pid));
+
+Error starting at line : 1 in command -
+select name from products where pid = (select pid from sales group by pid having count(*) = (select max(count(*)) from sales group by pid))
+Error report -
+ORA-01427: single-row subquery returns more than one row
+
+SQL> select * from products;
+
+       SID        PID NAME      
+---------- ---------- ----------
+        10        101 7up       
+        10        102 Coke      
+
+SQL> select * from sales;
+
+       PID        QTY      PRICE DATE1    
+---------- ---------- ---------- ---------
+       101          2          1 21-MAY-19
+       102          1          1 21-MAY-19
+
+SQL> insert into sales (101,1,sysdate);
+
+Error starting at line : 1 in command -
+insert into sales (101,1,sysdate)
+Error at Command Line : 1 Column : 20
+Error report -
+SQL Error: ORA-00928: missing SELECT keyword
+00928. 00000 -  "missing SELECT keyword"
+*Cause:    
+
+
+SQL> insert into sales values (101,1,sysdate);
+Error starting at line : 1 in command -
+insert into sales values (101,1,sysdate)
+Error at Command Line : 1 Column : 13
+Error report -
+SQL Error: ORA-00947: not enough values
+00947. 00000 -  "not enough values"
+*Cause:    
+
+
+SQL> insert into sales values (101,1,0.75,sysdate);
+1 row inserted.
+
+
+SQL> select name from products where pid = (select pid from sales group by pid having count(*) = (select max(count(*)) from sales group by pid));
+
+NAME
+----------
+7up       
+
+
+SQL> insert into sales values(105,2,7,sysdate);
+1 row inserted.
+
+
+SQL> insert into sales values(106,1,10,sysdate);
+1 row inserted.
+
+
+SQL> insert into sales values(107,2,21,sysdate);
+1 row inserted.
+
+
+SQL> insert into sales values(108,1,12,sysdate);
+1 row inserted.
+
+
+SQL> select* from sales;
+       PID        QTY      PRICE DATE1    
+---------- ---------- ---------- ---------
+       101          2          1 21-MAY-19
+       102          1          1 21-MAY-19
+       101          1        .75 21-MAY-19
+       105          2          7 22-MAY-19
+       106          1         10 22-MAY-19
+       107          2         21 22-MAY-19
+       108          1         12 22-MAY-19
+
+7 rows selected. 
+
+
+SQL> select sid from products where pid = (select pid from sales group by pid having count(*) = (select max(count(*)) from sales group by pid));
+       SID
+----------
+        10
+
+
+SQL> select description from subcategory where pid = (select pid from sales group by pid having count(*) = (select max(count(*)) from sales group by pid));
+Error starting at line : 1 in command -
+select description from subcategory where pid = (select pid from sales group by pid having count(*) = (select max(count(*)) from sales group by pid))
+Error at Command Line : 1 Column : 43
+Error report -
+SQL Error: ORA-00904: "PID": invalid identifier
+00904. 00000 -  "%s: invalid identifier"
+*Cause:    
+
+
+SQL> select cid from category where pid = (select pid from sales group by pid having count(*) = (select max(count(*)) from sales group by pid));
+Error starting at line : 1 in command -
+select cid from category where pid = (select pid from sales group by pid having count(*) = (select max(count(*)) from sales group by pid))
+Error at Command Line : 1 Column : 32
+Error report -
+SQL Error: ORA-00904: "PID": invalid identifier
+00904. 00000 -  "%s: invalid identifier"
+*Cause:    
+
+
+SQL> select cid from category where pid = (select pid from sales group by pid having count(*) = (select max(count(*)) from sales group by pid));
+
+
+
+SQL> select description from subcategory where sid = (select pid from sales group by pid having count(*) = (select max(count(*)) from sales group by pid)));
+Error starting at line : 1 in command -
+select description from subcategory where sid = (select pid from sales group by pid having count(*) = (select max(count(*)) from sales group by pid)))
+Error at Command Line : 1 Column : 150
+Error report -
+SQL Error: ORA-00933: SQL command not properly ended
+00933. 00000 -  "SQL command not properly ended"
+*Cause:    
+
+
+
+
+SQL> select description from subcategory where sid = (select pid from sales group by pid having count(*) = (select max(count(*)) from sales group by pid));
+no rows selected
+SQL> select description from subcategory where sid=(select SID from products
+  2   2  where pid=(select pid from sales group by pid having count(*)=(select max(count(*))
+  3   3* from sales group by pid)));
+
+Error starting at line : 1 in command -
+select description from subcategory where sid=(select SID from products
+ 2  where pid=(select pid from sales group by pid having count(*)=(select max(count(*))
+ 3* from sales group by pid)))
+Error at Command Line : 2 Column : 2
+Error report -
+SQL Error: ORA-00907: missing right parenthesis
+00907. 00000 -  "missing right parenthesis"
+
+
+
+SQL> select description from subcategory where sid=(select SID from products
+  2   2  where pid=(select pid from sales group by pid having count(*)=(select max(count(*))
+  3*  3* from sales group by pid));
+Error starting at line : 1 in command -
+select description from subcategory where sid=(select SID from products
+ 2  where pid=(select pid from sales group by pid having count(*)=(select max(count(*))
+ 3* from sales group by pid))
+Error at Command Line : 1 Column : 48
+Error report -
+SQL Error: ORA-00921: unexpected end of SQL command
+00921. 00000 -  "unexpected end of SQL command"
+
+
+
+
+
+SQL> select* from subcategory;no rows selected
+SQL> select table_name from user_tables;
+
+TABLE_NAME
+--------------------------------------------------------------------------------------------------------------------------------
+REGIONS
+COUNTRIES
+LOCATIONS
+DEPARTMENTS
+JOBS
+EMPLOYEES
+JOB_HISTORY
+SCHOOL
+ALDI
+ASDA
+CONSULTANTS
+NATIONWIDE
+SCHOOL2
+PRODUCTS
+MEMBERS
+BOOK
+BOOKISSUE
+SCHOOLTEST
+BANK
+CATEGORY
+SALES
+
+TABLE_NAME
+--------------------------------------------------------------------------------------------------------------------------------
+SUBCATEGORY
+
+22 rows selected. 
+
+SQL> create table subcategory(cid number(3), sid number(3), description char(20));
+
+Error starting at line : 1 in command -
+create table subcategory(cid number(3), sid number(3), description char(20))
+Error report -
+ORA-00955: name is already used by an existing object
+00955. 00000 -  "name is already used by an existing object"
+*Cause:    
+
+
+SQL> create subcategory(cid number(3), sid number(3), description char(20));
+Error starting at line : 1 in command -
+create subcategory(cid number(3), sid number(3), description char(20))
+Error report -
+ORA-00901: invalid CREATE command
+00901. 00000 -  "invalid CREATE command"
+*Cause:    
+
+
+SQL> create subcategory (cid number(3), sid number(3), description char(20));
+Error starting at line : 1 in command -
+create subcategory (cid number(3), sid number(3), description char(20))
+Error report -
+ORA-00901: invalid CREATE command
+00901. 00000 -  "invalid CREATE command"
+*Cause:    
+
+
+SQL> create table subcategory (cid number(3), sid number(3), description char(20));
+Error starting at line : 1 in command -
+create table subcategory (cid number(3), sid number(3), description char(20))
+Error report -
+ORA-00955: name is already used by an existing object
+00955. 00000 -  "name is already used by an existing object"
+*Cause:    
+
+
+SQL> create table subcategory (cid number(3), sid number(3), description char(20));
+Error starting at line : 1 in command -
+create table subcategory (cid number(3), sid number(3), description char(20))
+Error report -
+ORA-00955: name is already used by an existing object
+00955. 00000 -  "name is already used by an existing object"
+*Cause:    
+*Action:
+SQL> select* from subcategory;
+
+
+SQL> insert into subcategory value(1,10,'drinks');
+Error starting at line : 1 in command -
+insert into subcategory value(1,10,'drinks')
+Error at Command Line : 1 Column : 31
+Error report -
+SQL Error: ORA-00928: missing SELECT keyword
+00928. 00000 -  "missing SELECT keyword"
+*Cause:    
+
+
+SQL> insert into subcategory value(1,10,'drinks');
+
+Error starting at line : 1 in command -
+insert into subcategory value(1,10,'drinks')
+Error at Command Line : 1 Column : 31
+Error report -
+SQL Error: ORA-00928: missing SELECT keyword
+00928. 00000 -  "missing SELECT keyword"
+*Cause:    
+
+
+SQL> insert into subcategory values(1,10,'drinks');
+1 row inserted.
+
+
+SQL> insert into subcategory values(1,20,'fast_food');
+1 row inserted.
+
+SQL> select*subcategory;
+
+Error starting at line : 1 in command -
+select*subcategory
+Error at Command Line : 1 Column : 8
+Error report -
+SQL Error: ORA-00923: FROM keyword not found where expected
+00923. 00000 -  "FROM keyword not found where expected"
+*Cause:    
+
+
+SQL> select*from subcategory;
+       CID        SID DESCRIPTION         
+---------- ---------- --------------------
+         1         10 drinks              
+         1         20 fast_food           
+
+SQL> select description from subcategory where sid=(select SID from products
+  2   2  where pid=(select pid from sales group by pid having count(*)=(select max(count(*))
+  3   3* from sales group by pid)));
+
+Error starting at line : 1 in command -
+select description from subcategory where sid=(select SID from products
+ 2  where pid=(select pid from sales group by pid having count(*)=(select max(count(*))
+ 3* from sales group by pid)))
+Error at Command Line : 2 Column : 2
+Error report -
+SQL Error: ORA-00907: missing right parenthesis
+00907. 00000 -  "missing right parenthesis"
+
+
+
+SQL> select description from subcategory where sid=(select SID from products
+  2   2  where pid=(select pid from sales group by pid having count(*)=(select max(count(*))
+  3*  3* from sales group by pid)));
+
+Error starting at line : 1 in command -
+select description from subcategory where sid=(select SID from products
+ 2  where pid=(select pid from sales group by pid having count(*)=(select max(count(*))
+ 3* from sales group by pid)))
+Error at Command Line : 2 Column : 2
+Error report -
+SQL Error: ORA-00907: missing right parenthesis
+00907. 00000 -  "missing right parenthesis"
+*Cause:    
+*Action:
+SQL> select * from subcategory;
+
+       CID        SID DESCRIPTION         
+---------- ---------- --------------------
+         1         10 drinks              
+         1         20 fast_food           
+
+
+SQL> select * from category;no rows selected
+SQL> create table category(cid number(1), description char(20);
+
+Error starting at line : 1 in command -
+create table category(cid number(1), description char(20)
+Error report -
+ORA-00907: missing right parenthesis
+00907. 00000 -  "missing right parenthesis"
+*Cause:    
+
+
+SQL> create table category(cid number(1), description char(20));
+Error starting at line : 1 in command -
+create table category(cid number(1), description char(20))
+Error report -
+ORA-00955: name is already used by an existing object
+00955. 00000 -  "name is already used by an existing object"
+*Cause:    
+*Action:
+SQL> insert into category (1, 'food');
+
+Error starting at line : 1 in command -
+insert into category (1, 'food')
+Error at Command Line : 1 Column : 23
+Error report -
+SQL Error: ORA-00928: missing SELECT keyword
+00928. 00000 -  "missing SELECT keyword"
+*Cause:    
+
+
+SQL> insert into category values (1,'food');
+1 row inserted.
+
+SQL> insert into category values (2,'sport');
+
+1 row inserted.
+
+
+SQL> select description from subcategory where sid=(select SID from products
+  2   2  where pid=(select pid from sales group by pid having count(*)=(select max(count(*))
+  3*  3* from sales group by pid)));
+
+Error starting at line : 1 in command -
+select description from subcategory where sid=(select SID from products
+ 2  where pid=(select pid from sales group by pid having count(*)=(select max(count(*))
+ 3* from sales group by pid)))
+Error at Command Line : 2 Column : 2
+Error report -
+SQL Error: ORA-00907: missing right parenthesis
+00907. 00000 -  "missing right parenthesis"
+*Cause:    
+*Action:
+SQL> insert into subcategory values(2,20,cricket);
+
+Error starting at line : 1 in command -
+insert into subcategory values(2,20,cricket)
+Error at Command Line : 1 Column : 37
+Error report -
+SQL Error: ORA-00984: column not allowed here
+00984. 00000 -  "column not allowed here"
+*Cause:    
+
+
+SQL> insert into subcategory values(2,20,'cricket');
+1 row inserted.
+
+
+SQL> insert into subcategory values(2,40,'football');
+1 row inserted.
+
+
+SQL> insert into subcategory values(2,50,'hockey');
+1 row inserted.
+
+
+SQL> select description from subcategory where sid=(select SID from products
+  2   2  where pid=(select pid from sales group by pid having count(*)=(select max(count(*))
+  3*  3* from sales group by pid)));
+
+Error starting at line : 1 in command -
+select description from subcategory where sid=(select SID from products
+ 2  where pid=(select pid from sales group by pid having count(*)=(select max(count(*))
+ 3* from sales group by pid)))
+Error at Command Line : 2 Column : 2
+Error report -
+SQL Error: ORA-00907: missing right parenthesis
+00907. 00000 -  "missing right parenthesis"
+*Cause:    
+*Action:
+SQL> select* from products;
+
+       SID        PID NAME      
+---------- ---------- ----------
+        10        101 7up       
+        10        102 Coke      
+
+
+
+
+SQL> insert into products values(20,105,'Ball');
+1 row inserted.
+
+
+SQL> insert into products values(20,106,'ABC');
+1 row inserted.
+
+
+SQL> select description from subcategory where sid=(select SID from products
+  2   2  where pid=(select pid from sales group by pid having count(*)=(select max(count(*))
+  3*  3* from sales group by pid)));
+
+Error starting at line : 1 in command -
+select description from subcategory where sid=(select SID from products
+ 2  where pid=(select pid from sales group by pid having count(*)=(select max(count(*))
+ 3* from sales group by pid)))
+Error at Command Line : 2 Column : 2
+Error report -
+SQL Error: ORA-00907: missing right parenthesis
+00907. 00000 -  "missing right parenthesis"
+
+
+
+SQL> select description from subcategory where
+  2  sid = (select sid from products
+  3  where pid = (select pid from sales group by pid having count(*)=(select max(count(*))
+  4* from sales group by pid)));
+DESCRIPTION
+
+
+
+
+SQL> select sid, description from subcategory where
+  2  sid = (select sid from products
+  3  where pid = (select pid from sales group by pid having count(*)=(select max(count(*))
+  4* from sales group by pid)));
+       SID DESCRIPTION         
+
+
+
+
+SQL> select* sid, description from subcategory where
+  2  sid = (select sid from products
+  3  where pid = (select pid from sales group by pid having count(*)=(select max(count(*))
+  4* from sales group by pid)));
+Error starting at line : 1 in command -
+select* sid, description from subcategory where
+sid = (select sid from products
+where pid = (select pid from sales group by pid having count(*)=(select max(count(*))
+from sales group by pid)))
+Error at Command Line : 1 Column : 9
+Error report -
+SQL Error: ORA-00923: FROM keyword not found where expected
+
+
+
+
+SQL> select * description from subcategory where
+  2  sid = (select sid from products
+  3  where pid = (select pid from sales group by pid having count(*)=(select max(count(*))
+  4* from sales group by pid)));
+Error starting at line : 1 in command -
+select * description from subcategory where
+sid = (select sid from products
+where pid = (select pid from sales group by pid having count(*)=(select max(count(*))
+from sales group by pid)))
+Error at Command Line : 1 Column : 10
+Error report -
+SQL Error: ORA-00923: FROM keyword not found where expected
+
+
+
+
+SQL> select sid, description from subcategory where
+  2  sid = (select sid from products
+  3  where pid = (select pid from sales group by pid having count(*)=(select max(count(*))
+  4* from sales group by pid)));
+
+       SID DESCRIPTION         
+
+
+
+
+SQL> select* from subcategory where
+  2  sid = (select sid from products
+  3  where pid = (select pid from sales group by pid having count(*)=(select max(count(*))
+  4* from sales group by pid)));
+       CID        SID DESCRIPTION         
+---------- ---------- --------------------
+         1         10 drinks              
+
+SQL> 
+
+
