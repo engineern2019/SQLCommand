@@ -688,5 +688,6 @@ SQL> select* from subcategory where
          1         10 drinks              
 
 SQL> 
+SQL> select name from products where pid = (select pid from sales group by pid having count(*) = (select max(count(*)) from sales group by pid));
 
 
