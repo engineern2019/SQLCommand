@@ -1,3 +1,6 @@
+dlyiytukjdgsfadv
+
+
 Error report -
 ORA-00933: SQL command not properly ended
 00933. 00000 -  "SQL command not properly ended"
