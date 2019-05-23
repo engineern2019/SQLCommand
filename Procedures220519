@@ -949,11 +949,51 @@ SQL> create or replace function tax2(s number)
   9  end if;
  10  if s>1000 then result:=s*21/100;
  11  end if;
- 12  return result;
+ 12  return result;ser
  13  end;
  14* /
 Function TAX2 compiled
 
-         
+SQL> set serveroutput on;
+SQL> select* from school2;
+
+     REGNO NAME                      MARKS
+---------- -------------------- ----------
+        46 paul                         70
+        50 regev                         1
+        51 Newt                         99
+         1 halts                        85
+         2 Tino                        100
+
+SQL> delete from school2;
+a you sure you would like to delete
+
+
+5 rows deleted.
+
+SQL> create or replace trigger remove
+  2  after delete on school2
+  3  for each row
+
+SQL> create or replace trigger remove
+  2  after delete on school2
+  3  for each row
+  4  begin
+  5  dbms_output.put_line('Items deleted');
+  6  end;
+  7* /
+Trigger REMOVE compiled
+
+SQL> delete from school2;
+Items deleted
+Items deleted
+Items deleted
+Items deleted
+Items deleted
+
+
+5 rows deleted.
+
+SQL> 
  
 
