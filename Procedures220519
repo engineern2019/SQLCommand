@@ -1110,5 +1110,144 @@ SQL> select* from school2;
 
 SQL> 
 
- 
+SQL> create view1 as select first_name, last_name from employees where department_id=50;
+Error starting at line : 1 in command -
+create view1 as select first_name, last_name from employees where department_id=50
+Error report -
+ORA-00901: invalid CREATE command
+00901. 00000 -  "invalid CREATE command"
+*Cause:    
+
+
+SQL> create view1 as select first_name, last_name from employees where department_id= 50;
+Error starting at line : 1 in command -
+create view1 as select first_name, last_name from employees where department_id= 50
+Error report -
+ORA-00901: invalid CREATE command
+00901. 00000 -  "invalid CREATE command"
+*Cause:    
+
+
+SQL> create view view1 as select first_name, last_name from employees where department_id= 50;
+View VIEW1 created.
+
+
+SQL> select*from view1;
+FIRST_NAME           LAST_NAME                
+-------------------- -------------------------
+Mozhe                Atkinson                 
+Sarah                Bell                     
+Laura                Bissot                   
+Alexis               Bull                     
+Anthony              Cabrio                   
+Kelly                Chung                    
+Curtis               Davies                   
+Julia                Dellinger                
+Jennifer             Dilly                    
+Britney              Everett                  
+Kevin                Feeney                   
+Jean                 Fleaur                   
+Adam                 Fripp                    
+Timothy              Gates                    
+Ki                   Gee                      
+Girard               Geoni                    
+Douglas              Grant                    
+Vance                Jones                    
+Payam                Kaufling                 
+Renske               Ladwig                   
+James                Landry                   
+
+FIRST_NAME           LAST_NAME                
+-------------------- -------------------------
+Jason                Mallin                   
+Steven               Markle                   
+James                Marlow                   
+Randall              Matos                    
+Samuel               McCain                   
+Irene                Mikkilineni              
+Kevin                Mourgos                  
+Julia                Nayer                    
+Donald               OConnell                 
+TJ                   Olson                    
+Joshua               Patel                    
+Randall              Perkins                  
+Hazel                Philtanker               
+Trenna               Rajs                     
+Michael              Rogers                   
+Nandita              Sarchand                 
+John                 Seo                      
+Stephen              Stiles                   
+Martha               Sullivan                 
+Winston              Taylor                   
+Peter                Vargas                   
+
+FIRST_NAME           LAST_NAME                
+-------------------- -------------------------
+Shanta               Vollman                  
+Alana                Walsh                    
+Matthew              Weiss                    
+
+45 rows selected. 
+
+
+SQL> create view view2 as select first_name, last_name, job_id from employees where department_id= 50;
+View VIEW2 created.
+
+SQL> select* from view2;
+
+FIRST_NAME           LAST_NAME                 JOB_ID    
+-------------------- ------------------------- ----------
+Matthew              Weiss                     ST_MAN    
+Adam                 Fripp                     ST_MAN    
+Payam                Kaufling                  ST_MAN    
+Shanta               Vollman                   ST_MAN    
+Kevin                Mourgos                   ST_MAN    
+Julia                Nayer                     ST_CLERK  
+Irene                Mikkilineni               ST_CLERK  
+James                Landry                    ST_CLERK  
+Steven               Markle                    ST_CLERK  
+Laura                Bissot                    ST_CLERK  
+Mozhe                Atkinson                  ST_CLERK  
+James                Marlow                    ST_CLERK  
+TJ                   Olson                     ST_CLERK  
+Jason                Mallin                    ST_CLERK  
+Michael              Rogers                    ST_CLERK  
+Ki                   Gee                       ST_CLERK  
+Hazel                Philtanker                ST_CLERK  
+Renske               Ladwig                    ST_CLERK  
+Stephen              Stiles                    ST_CLERK  
+John                 Seo                       ST_CLERK  
+Joshua               Patel                     ST_CLERK  
+
+FIRST_NAME           LAST_NAME                 JOB_ID    
+-------------------- ------------------------- ----------
+Trenna               Rajs                      ST_CLERK  
+Curtis               Davies                    ST_CLERK  
+Randall              Matos                     ST_CLERK  
+Peter                Vargas                    ST_CLERK  
+Winston              Taylor                    SH_CLERK  
+Jean                 Fleaur                    SH_CLERK  
+Martha               Sullivan                  SH_CLERK  
+Girard               Geoni                     SH_CLERK  
+Nandita              Sarchand                  SH_CLERK  
+Alexis               Bull                      SH_CLERK  
+Julia                Dellinger                 SH_CLERK  
+Anthony              Cabrio                    SH_CLERK  
+Kelly                Chung                     SH_CLERK  
+Jennifer             Dilly                     SH_CLERK  
+Timothy              Gates                     SH_CLERK  
+Randall              Perkins                   SH_CLERK  
+Sarah                Bell                      SH_CLERK  
+Britney              Everett                   SH_CLERK  
+Samuel               McCain                    SH_CLERK  
+Vance                Jones                     SH_CLERK  
+Alana                Walsh                     SH_CLERK  
+
+FIRST_NAME           LAST_NAME                 JOB_ID    
+-------------------- ------------------------- ----------
+Kevin                Feeney                    SH_CLERK  
+Donald               OConnell                  SH_CLERK  
+Douglas              Grant                     SH_CLERK  
+
+45 rows selected. 
 
