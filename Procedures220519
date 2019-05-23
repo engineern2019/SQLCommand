@@ -893,5 +893,50 @@ FIRST_NAME               SALARY        Tax Total Salary
 Shelley                   12000       2520         9480
 William                    8300       1743         6557
 
-107 rows selected. 
+107 rows selected.
+
+SQL> create or replace function DName(D Number)
+  2  Return Char
+  3  Is
+  4  DName departments.department_name%type;
+  5  Begin
+  6  Select department_name into DName from departments
+  7  Where department_id=D;
+  8  Return DName;
+  9  End;
+ 10* /
+Function DNAME compiled
+
+SQL> create or replace function tax2(s number)
+  2  return number
+  3  is
+  4  result number(7,2);
+  5  begin
+  6  if s<=500 then result:=0;
+  7  end if;
+  8  if s500 and s<1000 then result:=s*15/100
+  9  end if;
+ 10  if s>1000 then reult:=s*21/100;
+ 11  end if;
+ 12  return result;
+ 13  end;
+ 14  /
+
+Function TAX2 compiled
+
+Errors: check compiler log
+SQL> show errors
+
+Errors for FUNCTION HR.TAX2:
+
+LINE/COL ERROR
+-------- --------------------------------------------------------------------------------------
+9/1      PLS-00103: Encountered the symbol "END" when expecting one of the following:
+         
+         * & = - + ; < / > at in is mod remainder not rem
+         <an exponent (**)> <> or != or ~= >= <= <> and or like like2
+         like4 likec between || member submultiset
+         The symbol ";" was substituted for "END" to continue.
+         
+ 
 
