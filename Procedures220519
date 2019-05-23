@@ -734,4 +734,26 @@ sm015 James      Manchester
 
 SQL> 
 
+SQL> create or replace procedure CategoryEntry(Cat Char, Sub Char)
+  2  is
+  3  NewCID Number(3);
+  4  NewSID Number(3);
+  5  begin
+  6  Select NVL(Max(CID),0) into NewCID
+  7  From Category where Description=cat;
+  8  
+  9  If NewCID=0 then
+ 10  Select NVL(Max(CID),0)+1 into NewCID
+ 11  From Category;
+ 12  Insert into Category values(NewCID, Cat);
+ 13  End If;
+ 14  
+ 15  select NVL(Max(SID),0)+1 into NewSID
+ 16  From Subcategory;
+ 17  Insert into subcategory values(NewCID,NewSID,Sub);
+ 18  End;
+ 19* /
+Procedure CATEGORYENTRY compiled
+
+
 
