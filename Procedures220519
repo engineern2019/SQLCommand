@@ -1054,6 +1054,61 @@ Trigger INSERT_TRIGGER1 compiled
 
 SQL> 
 
+SQL> create trigger insert_trigger1
+  2  before insert on school2
+  3  for each row
+  4  begin
+  5  if :new.marks=58 or :new.marks=59 then :new.marks:=60;
+  6  end if;
+  7  :new.name:=upper(:new.name);
+  8  end;
+  9* /
+Error starting at line : 1 in command -
+create trigger insert_trigger1
+before insert on school2
+for each row
+begin
+if :new.marks=58 or :new.marks=59 then :new.marks:=60;
+end if;
+
+
+
+
+
+
+
+
+
+SQL> create or replace trigger insert_trigger1
+  2  before insert on school2
+  3  for each row
+  4  begin
+  5  if :new.marks=58 or :new.marks=59 then :new.marks:=60;
+  6  end if;
+  7  :new.name:=upper(:new.name);
+  8  end;
+  9* /
+Trigger INSERT_TRIGGER1 compiled
+
+SQL> select* from school2;
+no rows selected
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select*from school2;
+no rows selected
+SQL> insert into school2 values(10,'Fred',58);
+
+1 row inserted.
+
+SQL> select* from school2;
+
+     REGNO NAME                      MARKS
+---------- -------------------- ----------
+        10 FRED                         60
+
+SQL> 
 
  
 
