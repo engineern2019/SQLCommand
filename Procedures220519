@@ -1016,6 +1016,43 @@ ORA-04088: error during execution of trigger 'HR.TAKEBACKUP2'
 SQL> drop trigger takebackup2;
 Trigger TAKEBACKUP2 dropped.
 
+SQL> create trigger insert_trigger1
+  2  before insert on school2
+  3  for each row
+  4  begin
+  5  if :new.marks=58 or :new.marks=59 then :new.marks:=60;
+  6  end if;
+  7  :new.name:=upper(:new.name);
+  8  end;
+  9* /
+Error starting at line : 1 in command -
+create trigger insert_trigger1
+before insert on school2
+for each row
+begin
+if :new.marks=58 or :new.marks=59 then :new.marks:=60;
+end if;
+
+
+
+
+
+
+
+
+
+SQL> create or replace trigger insert_trigger1
+  2  before insert on school2
+  3  for each row
+  4  begin
+  5  if :new.marks=58 or :new.marks=59 then :new.marks:=60;
+  6  end if;
+  7  :new.name:=upper(:new.name);
+  8  end;
+  9* /
+Trigger INSERT_TRIGGER1 compiled
+
+SQL> 
 
 
  
