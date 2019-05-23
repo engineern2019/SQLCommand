@@ -766,5 +766,132 @@ SQL> create or replace function tax(s number)
   9* /
 Function TAX compiled
 
+SQL> select first_name,Salary,Tax(Salary) as "Tax",Salary-Tax(Salary) as "Total Salary" from employees;
 
+FIRST_NAME               SALARY        Tax Total Salary
+-------------------- ---------- ---------- ------------
+Steven                    24000       5040        18960
+Neena                     17000       3570        13430
+Lex                       17000       3570        13430
+Alexander                  9000       1890         7110
+Bruce                      6000       1260         4740
+David                      4800       1008         3792
+Valli                      4800       1008         3792
+Diana                      4200        882         3318
+Nancy                     12000       2520         9480
+Daniel                     9000       1890         7110
+John                       8200       1722         6478
+Ismael                     7700       1617         6083
+Jose Manuel                7800       1638         6162
+Luis                       6900       1449         5451
+Den                       11000       2310         8690
+Alexander                  3100        651         2449
+Shelli                     2900        609         2291
+Sigal                      2800        588         2212
+Guy                        2600        546         2054
+Karen                      2500        525         1975
+Matthew                    8000       1680         6320
+
+FIRST_NAME               SALARY        Tax Total Salary
+-------------------- ---------- ---------- ------------
+Adam                       8200       1722         6478
+Payam                      7900       1659         6241
+Shanta                     6500       1365         5135
+Kevin                      5800       1218         4582
+Julia                      3200        672         2528
+Irene                      2700        567         2133
+James                      2400        504         1896
+Steven                     2200        462         1738
+Laura                      3300        693         2607
+Mozhe                      2800        588         2212
+James                      2500        525         1975
+TJ                         2100        441         1659
+Jason                      3300        693         2607
+Michael                    2900        609         2291
+Ki                         2400        504         1896
+Hazel                      2200        462         1738
+Renske                     3600        756         2844
+Stephen                    3200        672         2528
+John                       2700        567         2133
+Joshua                     2500        525         1975
+Trenna                     3500        735         2765
+
+FIRST_NAME               SALARY        Tax Total Salary
+-------------------- ---------- ---------- ------------
+Curtis                     3100        651         2449
+Randall                    2600        546         2054
+Peter                      2500        525         1975
+John                      14000       2940        11060
+Karen                     13500       2835        10665
+Alberto                   12000       2520         9480
+Gerald                    11000       2310         8690
+Eleni                     10500       2205         8295
+Peter                     10000       2100         7900
+David                      9500       1995         7505
+Peter                      9000       1890         7110
+Christopher                8000       1680         6320
+Nanette                    7500       1575         5925
+Oliver                     7000       1470         5530
+Janette                   10000       2100         7900
+Patrick                    9500       1995         7505
+Allan                      9000       1890         7110
+Lindsey                    8000       1680         6320
+Louise                     7500       1575         5925
+Sarath                     7000       1470         5530
+Clara                     10500       2205         8295
+
+FIRST_NAME               SALARY        Tax Total Salary
+-------------------- ---------- ---------- ------------
+Danielle                   9500       1995         7505
+Mattea                     7200       1512         5688
+David                      6800       1428         5372
+Sundar                     6400       1344         5056
+Amit                       6200       1302         4898
+Lisa                      11500       2415         9085
+Harrison                  10000       2100         7900
+Tayler                     9600       2016         7584
+William                    7400       1554         5846
+Elizabeth                  7300       1533         5767
+Sundita                    6100       1281         4819
+Ellen                     11000       2310         8690
+Alyssa                     8800       1848         6952
+Jonathon                   8600       1806         6794
+Jack                       8400       1764         6636
+Kimberely                  7000       1470         5530
+Charles                    6200       1302         4898
+Winston                    3200        672         2528
+Jean                       3100        651         2449
+Martha                     2500        525         1975
+Girard                     2800        588         2212
+
+FIRST_NAME               SALARY        Tax Total Salary
+-------------------- ---------- ---------- ------------
+Nandita                    4200        882         3318
+Alexis                     4100        861         3239
+Julia                      3400        714         2686
+Anthony                    3000        630         2370
+Kelly                      3800        798         3002
+Jennifer                   3600        756         2844
+Timothy                    2900        609         2291
+Randall                    2500        525         1975
+Sarah                      4000        840         3160
+Britney                    3900        819         3081
+Samuel                     3200        672         2528
+Vance                      2800        588         2212
+Alana                      3100        651         2449
+Kevin                      3000        630         2370
+Donald                     2600        546         2054
+Douglas                    2600        546         2054
+Jennifer                   4400        924         3476
+Michael                   13000       2730        10270
+Pat                        6000       1260         4740
+Susan                      6500       1365         5135
+Hermann                   10000       2100         7900
+
+FIRST_NAME               SALARY        Tax Total Salary
+-------------------- ---------- ---------- ------------
+Shelley                   12000       2520         9480
+William                    8300       1743         6557
+
+107 rows selected. 
 
