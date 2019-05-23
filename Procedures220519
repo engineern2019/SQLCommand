@@ -937,6 +937,23 @@ LINE/COL ERROR
          <an exponent (**)> <> or != or ~= >= <= <> and or like like2
          like4 likec between || member submultiset
          The symbol ";" was substituted for "END" to continue.
+
+SQL> create or replace function tax2(s number)
+  2  return number
+  3  is
+  4  result number(7,2);
+  5  begin
+  6  if s<=500 then result:=0;
+  7  end if;
+  8  if s>500 and s<1000 then result:=s*15/100
+  9  end if;
+ 10  if s>1000 then result:=s*21/100;
+ 11  end if;
+ 12  return result;
+ 13  end;
+ 14* /
+Function TAX2 compiled
+
          
  
 
