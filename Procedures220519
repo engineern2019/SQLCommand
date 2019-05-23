@@ -755,5 +755,16 @@ SQL> create or replace procedure CategoryEntry(Cat Char, Sub Char)
  19* /
 Procedure CATEGORYENTRY compiled
 
+SQL> create or replace function tax(s number)
+  2  return number
+  3  is
+  4  result number(7,2);
+  5  begin
+  6  result:= s *21/100;
+  7  return result;
+  8  end;
+  9* /
+Function TAX compiled
+
 
 
