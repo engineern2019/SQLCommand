@@ -995,5 +995,28 @@ Items deleted
 5 rows deleted.
 
 SQL> 
+
+SQL> delete from school2;
+Error starting at line : 1 in command -
+delete from school2
+Error report -
+ORA-12899: value too large for column "HR"."BACKUP_SCHOOL2"."NAME" (actual: 20,
+maximum: 10)
+ORA-06512: at "HR.TAKEBACKUP2", line 2
+ORA-04088: error during execution of trigger 'HR.TAKEBACKUP2'
+
+
+
+
+
+
+
+
+
+SQL> drop trigger takebackup2;
+Trigger TAKEBACKUP2 dropped.
+
+
+
  
 
